@@ -6,35 +6,46 @@ namespace ReadInt_Function1_
     {
         static void Main(string[] args)
         {
-            string enteredNumber;
-            string exit = "exit";
+            bool isOpen = true;
 
-            Console.WriteLine($"Введите число для трансфера или введите {exit} длля выхода");
-
-            while (true)
+            while (isOpen)
             {
-                enteredNumber = RequestNumber();
-                GetNumber(enteredNumber);
+                RequestNumber(isOpen);
             }
 
         }
 
-        static void GetNumber(string enteredNumber)
+        static void ReadInt(string enteredNumber)
         {
-                int result;
-                bool success = int.TryParse(enteredNumber, out result);
+            int result;
+            bool haveSuccess = int.TryParse(enteredNumber, out result);
 
-                if (success == true)
-                    Console.WriteLine($"Переведена '{enteredNumber}' в {result}");
-                else
-                    Console.WriteLine($"Ошибка {enteredNumber} в числовое значение не переведена");
+            if (haveSuccess == true)
+                Console.WriteLine($"Переведена '{enteredNumber}' в {result}");
+            else
+                Console.WriteLine($"Ошибка {enteredNumber} в числовое значение не переведена");
         }
 
-        static string RequestNumber()
+        static bool RequestNumber(bool isOpen)
         {
             string enteredNumber;
-            Console.WriteLine("Введите числовое значение");
-            return enteredNumber = Console.ReadLine();
+            string exit = "exit";
+            bool inWork = true;
+
+            Console.WriteLine($"Введите число для трансфера или введите {exit} длля выхода");
+
+            while (inWork)
+            {
+                Console.WriteLine("Введите числовое значение");
+                enteredNumber = Console.ReadLine();
+
+                if (enteredNumber == exit)
+                    inWork = false;
+                else
+                    ReadInt(enteredNumber);
+            }
+
+            return isOpen = false;
         }
     }
 }
