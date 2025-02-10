@@ -10,9 +10,8 @@ namespace ReadInt_Function1_
 
             while (isOpen)
             {
-                RequestNumber(isOpen);
+                isOpen = IsRequestNumber();
             }
-
         }
 
         static void ReadInt(string enteredNumber)
@@ -26,7 +25,7 @@ namespace ReadInt_Function1_
                 Console.WriteLine($"Ошибка {enteredNumber} в числовое значение не переведена");
         }
 
-        static bool RequestNumber(bool isOpen)
+        static bool IsRequestNumber()
         {
             string enteredNumber;
             string exit = "exit";
@@ -45,7 +44,7 @@ namespace ReadInt_Function1_
                     ReadInt(enteredNumber);
             }
 
-            return isOpen = false;
+            return inWork = false;
         }
     }
 }
